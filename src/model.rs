@@ -16,3 +16,13 @@ pub struct Profile {
     pub full_name: String,
     pub email: String
 }
+
+#[derive(FromRow, Debug)]
+pub struct Message {
+    pub id: i64,
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
+    pub user_id: i64,
+    pub body: String,
+    pub likes: i32
+}
