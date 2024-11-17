@@ -1,10 +1,14 @@
-use sqlx::postgres::PgQueryResult;
+use sqlx::PgPool;
 
-pub async fn delete_profile(pool: &sqlx::PgPool, id: i64) -> Result<PgQueryResult, sqlx::Error> {
-    sqlx::query::<sqlx::postgres::Postgres>(r"
-        delete from profile where id = $1
+
+pub async fn delete_profile(pool: &PgPool, id: i64) -> Result<(), sqlx::Error> {
+    _ = sqlx::query::<_>(r"
+        delete from profile
+        where id = $1
     ")
     .bind(id)
     .execute(pool)
-    .await
+    .await?;
+
+    Ok(())
 }

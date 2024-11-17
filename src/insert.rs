@@ -1,11 +1,9 @@
 use sqlx::PgPool;
-use sqlx::Error;
-use sqlx::query_as;
 use crate::model::EntityId;
 
 
-pub async fn insert_profile(pool: &PgPool, user_name: String, full_name: String, email: String) -> Result<EntityId, Error> {
-    query_as::<_, EntityId>(r"
+pub async fn insert_profile(pool: &PgPool, user_name: String, full_name: String, email: String) -> Result<EntityId, sqlx::Error> {
+    sqlx::query_as::<sqlx::postgres::Postgres, EntityId>(r"
         insert into profile
         (user_name, full_name, email)
         values
