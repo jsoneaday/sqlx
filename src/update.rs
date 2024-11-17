@@ -1,9 +1,7 @@
 use sqlx::{postgres::PgQueryResult, PgPool};
 
-
-
 pub async fn update_profile(pool: &PgPool, id: i64, user_name: String) -> Result<PgQueryResult, sqlx::Error> {
-    sqlx::query::<sqlx::postgres::Postgres>(r"
+    sqlx::query::<_>(r"
         update profile
         set user_name = $1
         where id = $2

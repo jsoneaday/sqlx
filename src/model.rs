@@ -2,7 +2,6 @@ use chrono::{DateTime, Utc};
 use serde::Serialize;
 use sqlx::prelude::FromRow;
 
-
 #[derive(Serialize, FromRow)]
 pub struct EntityId {
     pub id: i64
